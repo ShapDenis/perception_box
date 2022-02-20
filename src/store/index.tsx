@@ -1,18 +1,20 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
+import {character} from "../slice/character";
+import {episodes} from "../slice/episodes";
 
-const rootReducer = combineReducers({ });
+const rootReducer = combineReducers({character, episodes});
 
-const persistedState = localStorage.getItem("reduxState")
-    ? JSON.parse(localStorage.getItem("reduxState"))
+const persistedState = localStorage.getItem("perceptionBox")
+    ? JSON.parse(localStorage.getItem("perceptionBox")!)
     : {};
 
-export const store = configureStore({
+export const index = configureStore({
     reducer: rootReducer,
     preloadedState: persistedState,
 });
 
-store.subscribe(() => {
-    localStorage.setItem("reduxState", JSON.stringify(store.getState()));
+index.subscribe(() => {
+    localStorage.setItem("perceptionBox", JSON.stringify(index.getState()));
 });
 
-export type RootState = ReturnType<typeof store.getState>;
+export type RootState = ReturnType<typeof index.getState>;
