@@ -1,36 +1,6 @@
 import {createAsyncThunk, createEntityAdapter, createSelector, createSlice} from "@reduxjs/toolkit";
 import {RootState} from "../store";
 
-// type Character = {
-//     info: {
-//         count: number,
-//         pages: number,
-//         next: string,
-//         prev: boolean
-//     };
-//     results: [
-//         {
-//             id: number,
-//             name: string,
-//             status: string,
-//             species: string,
-//             type: string,
-//             gender: string,
-//             origin: {
-//                 name: string,
-//                 url: string
-//             },
-//             location: {
-//                 name: string,
-//                 url: string
-//             },
-//             image: string,
-//             episode: [],
-//             url: string,
-//             created: string
-//         }
-//     ];
-// };
 type Character = {
     id: number,
     name: string,
@@ -61,7 +31,6 @@ export const {selectAll} = characterAdapter.getSelectors(selectState);
 export const selectCharacters = (searchFields: string) =>
     createSelector([selectRootState], (state) => {
         const characters = selectAll(state);
-
         const filterCharactersSearchFields = characters.filter((e) => {
             return e.name.toLowerCase()?.includes(searchFields.toLowerCase());
         });

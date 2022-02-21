@@ -36,7 +36,7 @@ export const characterSlice = createSlice({
     reducers: {},
     extraReducers: {
         [getEpisodes.fulfilled.type]: (state, action) => {
-            episodesAdapter.setAll(state, action.payload);
+            episodesAdapter.setAll(state, action.payload.results);
         },
     },
 })
