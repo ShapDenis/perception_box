@@ -4,7 +4,7 @@ import {getCharacter, selectCharacters} from "../../slice/character";
 import styles from "./Characters.module.scss";
 import {Link} from "react-router-dom";
 
-const Characters: FC = (): JSX.Element => {
+const Characters: FC = React.memo((): JSX.Element => {
     const [searchFields, setSearchFields] = useState<string>('');
     const dispatch = useDispatch();
     const character = useSelector(selectCharacters(searchFields))
@@ -43,6 +43,6 @@ const Characters: FC = (): JSX.Element => {
             </div>
         </div>
     );
-};
+});
 
 export default Characters;
