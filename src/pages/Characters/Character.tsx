@@ -7,27 +7,24 @@ import {selectCharacter} from "../../slice/character";
 export const Character = () => {
     const {id} = useParams();
     const character = useSelector(selectCharacter(Number(id)));
+    if (!character) return null
     return (
         <div className={styles.contentItem}>
-            {character.map(e => {
-                return (
-                    <div className={styles.itemStyle}>
-                        <figure key={e.id}>
-                            <img src={e.image} alt=""/>
-                            <figcaption>{e.name}</figcaption>
-                        </figure>
-                        <div>
-                            <p><span className={styles.itemStyleInfo}>Species:</span> {e.species}</p>
-                            <p><span className={styles.itemStyleInfo}>Gender:</span> {e.gender}</p>
-                            <p><span className={styles.itemStyleInfo}>Location:</span> {e.location.name}</p>
-                            <p><span className={styles.itemStyleInfo}>Status:</span> {e.status}</p>
-                            <p><span className={styles.itemStyleInfo}>Created:</span> {e.created}</p>
-                            <p><span className={styles.itemStyleInfo}>Episode:</span> {e.episode.map(e => <p>{e}</p>)}
-                            </p>
-                        </div>
-                    </div>
-                )
-            })}
+            <div className={styles.itemStyle}>
+                <figure key={character.id}>
+                    <img src={character.image} alt=""/>
+                    <figcaption>{character.name}</figcaption>
+                </figure>
+                <div>
+                    <p><span className={styles.itemStyleInfo}>Species:</span> {character.species}</p>
+                    <p><span className={styles.itemStyleInfo}>Gender:</span> {character.gender}</p>
+                    <p><span className={styles.itemStyleInfo}>Location:</span> {character.location.name}</p>
+                    <p><span className={styles.itemStyleInfo}>Status:</span> {character.status}</p>
+                    <p><span className={styles.itemStyleInfo}>Created:</span> {character.created}</p>
+                    <p><span className={styles.itemStyleInfo}>Episode:</span> {character.episode.map(e => <p>{e}</p>)}
+                    </p>
+                </div>
+            </div>
         </div>
     );
 };

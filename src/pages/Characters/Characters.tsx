@@ -5,13 +5,13 @@ import styles from "./Characters.module.scss";
 import {Link} from "react-router-dom";
 
 const Characters: FC = React.memo((): JSX.Element => {
-    const [searchFields, setSearchFields] = useState<string>('');
+    const [searchFields, setSearchFields] = useState<string>("");
     const dispatch = useDispatch();
-    const character = useSelector(selectCharacters(searchFields))
+    const character = useSelector(selectCharacters())
 
     useEffect(() => {
-        dispatch(getCharacter());
-    }, []);
+        dispatch(getCharacter({name:searchFields}));
+    }, [searchFields]);
 
     return (
         <div className={styles.wrapper}>
