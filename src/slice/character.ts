@@ -32,28 +32,24 @@ import {RootState} from "../store";
 //     ];
 // };
 type Character = {
-    results: [
-        {
-            id: number,
-            name: string,
-            status: string,
-            species: string,
-            type: string,
-            gender: string,
-            origin: {
-                name: string,
-                url: string
-            },
-            location: {
-                name: string,
-                url: string
-            },
-            image: string,
-            episode: [],
-            url: string,
-            created: string
-        }
-    ];
+    id: number,
+    name: string,
+    status: string,
+    species: string,
+    type: string,
+    gender: string,
+    origin: {
+        name: string,
+        url: string
+    },
+    location: {
+        name: string,
+        url: string
+    },
+    image: string,
+    episode: [],
+    url: string,
+    created: string
 };
 export const characterAdapter = createEntityAdapter<Character>();
 
@@ -102,9 +98,6 @@ export const characterSlice = createSlice({
         [getCharacter.fulfilled.type]: (state, action) => {
             characterAdapter.setAll(state, action.payload.results);
         },
-        // [getCharacter.fulfilled.type]: (state, action) => {
-        //     characterAdapter.setAll(state, action.payload.results);
-        // },
     },
 })
 export const character = characterSlice.reducer;
